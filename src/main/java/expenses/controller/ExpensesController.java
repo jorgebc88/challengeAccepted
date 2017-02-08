@@ -5,6 +5,7 @@ import expenses.service.ExpensesService;
 import expenses.valueobjects.ExpensesVO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -33,7 +34,7 @@ public class ExpensesController {
     }
 
     @RequestMapping(value = "/expensesByDate/{date}", method = RequestMethod.GET)
-    public List<ExpensesVO> getExpensesByDate (@PathVariable("date")LocalDate date){
+    public List<ExpensesVO> getExpensesByDate (@PathVariable("date") @DateTimeFormat(pattern="yyyyMMdd") LocalDate date){
         LOGGER.info("Get expenses by Date.");
         List<ExpensesVO> expensesVOList = this.expensesService.getExpensesByDate(date);
         return expensesVOList;

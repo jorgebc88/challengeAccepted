@@ -1,15 +1,29 @@
 package expenses.valueobjects;
 
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
+@Entity
+@Table(name="expenses")
 public class ExpensesVO {
 
-    private long expenseID = 0;
-    private LocalDateTime timeStamp;
-    private String expenseType;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long expenseID;
+
+//    @Column(name="expense_date", columnDefinition="DATE") PREGUNTAR
+    private LocalDate expenseDate;
+
+//    @Column(name="expense_time", columnDefinition="TIME")
+    private LocalTime expenseTime;
+
+    private String expenseType = ExpensesTypes.OTHERS.getExpenseType();
     private String expenseDescription;
     private long quantity;
+    private float unitPrice;
 
     public ExpensesVO() {
     }
@@ -22,12 +36,20 @@ public class ExpensesVO {
         this.expenseID = expenseID;
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
+    public LocalDate getExpenseDate() {
+        return expenseDate;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setExpenseDate(LocalDate expenseDate) {
+        this.expenseDate = expenseDate;
+    }
+
+    public LocalTime getExpenseTime() {
+        return expenseTime;
+    }
+
+    public void setExpenseTime(LocalTime expenseTime) {
+        this.expenseTime = expenseTime;
     }
 
     public String getExpenseType() {
@@ -53,4 +75,13 @@ public class ExpensesVO {
     public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
+
+    public float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 }
+
