@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,7 +35,8 @@ public class ExpensesController {
     }
 
     @RequestMapping(value = "/expenses", method = RequestMethod.GET)
-    public List<ExpensesVO> getExpenses (){
+    public List<ExpensesVO> getExpenses (HttpServletResponse httpServletResponse){
+        addCorsHeader(httpServletResponse);
         LOGGER.info("Get expenses.");
         List<ExpensesVO> expensesVOList = this.expensesService.getExpenses();
         return expensesVOList;
@@ -60,4 +62,14 @@ public class ExpensesController {
         LOGGER.info("Expense with id: " + id + "has been deleted.");
         return this.expensesService.deleteExpense(id);
     }
+
+
+    public static void addCorsHeader(HttpServletResponse response) {
+        // TODO: externalize the Allow-Origin
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
+        response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+        response.addHeader("Access-Control-Max-Age", "1728000");
+    }
+
 }
