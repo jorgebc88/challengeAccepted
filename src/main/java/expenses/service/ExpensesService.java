@@ -22,6 +22,10 @@ public class ExpensesService {
         return this.expensesDao.getExpensesByType(type);
     }
 
+    public List<ExpensesVO> getExpenses() {
+        return this.expensesDao.getExpenses();
+    }
+
     public List<ExpensesVO> getExpensesByDate(LocalDate date) {
         return this.expensesDao.getExpensesByDate(date);
     }

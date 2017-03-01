@@ -33,6 +33,13 @@ public class ExpensesController {
         return expensesVOList;
     }
 
+    @RequestMapping(value = "/expenses", method = RequestMethod.GET)
+    public List<ExpensesVO> getExpenses (){
+        LOGGER.info("Get expenses.");
+        List<ExpensesVO> expensesVOList = this.expensesService.getExpenses();
+        return expensesVOList;
+    }
+
     @RequestMapping(value = "/expensesByDate/{date}", method = RequestMethod.GET)
     public List<ExpensesVO> getExpensesByDate (@PathVariable("date") @DateTimeFormat(pattern="yyyyMMdd") LocalDate date){
         LOGGER.info("Get expenses by Date.");

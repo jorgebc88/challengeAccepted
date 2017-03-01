@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,14 @@ public class ExpensesDao {
 //                filter(expensesVO -> expensesVO.getExpenseType().equals(type)).collect(Collectors.toList());
 //        return expensesVOList;
 //    }
+
+    public List<ExpensesVO> getExpenses() {
+        Iterable<ExpensesVO> expensesVOIterable = expenseRepository.findAll();
+        List<ExpensesVO> expensesVOList = new ArrayList<>();
+        expensesVOIterable.iterator().forEachRemaining(expensesVOList::add);
+
+        return expensesVOList;
+    }
 
     public List<ExpensesVO> getExpensesByDate(LocalDate date) {
 //        List<ExpensesVO> expensesVOList = this.expensesCache.getExpensesVOList().stream().
