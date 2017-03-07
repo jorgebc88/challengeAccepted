@@ -73,7 +73,10 @@ public class ExpensesController {
         // TODO: externalize the Allow-Origin
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
-        response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+//        response.addHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, Authorization, X-Request-With");
+        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.addHeader("Access-Control-Allow-Credentials", "true");
+        response.addHeader("Content-Type", "application/x-www-form-urlencoded");
         response.addHeader("Access-Control-Max-Age", "1728000");
     }
 
