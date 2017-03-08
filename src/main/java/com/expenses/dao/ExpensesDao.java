@@ -1,16 +1,14 @@
-package expenses.dao;
+package com.expenses.dao;
 
-import expenses.repositories.ExpenseRepository;
-import expenses.valueobjects.ExpensesVO;
+import com.expenses.repositories.ExpenseRepository;
+import com.expenses.valueobjects.ExpensesVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class ExpensesDao {

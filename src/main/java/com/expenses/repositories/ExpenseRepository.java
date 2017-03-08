@@ -1,6 +1,6 @@
-package expenses.repositories;
+package com.expenses.repositories;
 
-import expenses.valueobjects.ExpensesVO;
+import com.expenses.valueobjects.ExpensesVO;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;

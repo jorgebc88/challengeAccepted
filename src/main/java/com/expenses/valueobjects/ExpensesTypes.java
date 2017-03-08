@@ -1,4 +1,4 @@
-package expenses.valueobjects;
+package com.expenses.valueobjects;
 
 public enum ExpensesTypes {
     FOOD("FOOD"),

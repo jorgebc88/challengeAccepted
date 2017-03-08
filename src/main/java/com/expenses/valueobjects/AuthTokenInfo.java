@@ -1,4 +1,4 @@
-package expenses.valueobjects;
+package com.expenses.valueobjects;
 
 public class AuthTokenInfo {
 

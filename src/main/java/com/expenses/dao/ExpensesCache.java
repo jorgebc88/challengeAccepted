@@ -1,6 +1,6 @@
-package expenses.dao;
+package com.expenses.dao;
 
-import expenses.valueobjects.ExpensesVO;
+import com.expenses.valueobjects.ExpensesVO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

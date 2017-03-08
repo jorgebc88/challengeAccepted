@@ -1,4 +1,4 @@
-package expenses.valueobjects;
+package com.expenses.valueobjects;
 
 
 import javax.persistence.*;
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name="expenses")
+@Table(name= "expenses")
 public class ExpensesVO {
 
     @Id

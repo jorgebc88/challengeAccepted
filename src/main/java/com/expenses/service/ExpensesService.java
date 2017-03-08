@@ -1,7 +1,7 @@
-package expenses.service;
+package com.expenses.service;
 
-import expenses.dao.ExpensesDao;
-import expenses.valueobjects.ExpensesVO;
+import com.expenses.dao.ExpensesDao;
+import com.expenses.valueobjects.ExpensesVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

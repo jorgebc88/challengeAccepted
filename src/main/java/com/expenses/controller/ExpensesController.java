@@ -1,8 +1,8 @@
-package expenses.controller;
+package com.expenses.controller;
 
-import expenses.service.ExpensesService;
+import com.expenses.service.ExpensesService;
 
-import expenses.valueobjects.ExpensesVO;
+import com.expenses.valueobjects.ExpensesVO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -71,13 +71,13 @@ public class ExpensesController {
 
     public static void addCorsHeader(HttpServletResponse response) {
         // TODO: externalize the Allow-Origin
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
-//        response.addHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, Authorization, X-Request-With");
-        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.addHeader("Access-Control-Allow-Credentials", "true");
-        response.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        response.addHeader("Access-Control-Max-Age", "1728000");
+//        response.addHeader("Access-Control-Allow-Origin", "*");
+//        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
+////        response.addHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, Authorization, X-Request-With");
+//        response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+//        response.addHeader("Access-Control-Allow-Credentials", "true");
+//        response.addHeader("Content-Type", "application/x-www-form-urlencoded");
+//        response.addHeader("Access-Control-Max-Age", "1728000");
     }
 
 }
