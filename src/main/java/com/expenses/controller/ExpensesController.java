@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@RequestMapping("/expense")
 public class ExpensesController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class ExpensesController {
 
     private final Logger LOGGER = Logger.getLogger(ExpensesController.class);
 
-    @RequestMapping(value = "/expense", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ExpensesVO createExpense (HttpServletResponse httpServletResponse, @RequestBody ExpensesVO expensesVO){
         addCorsHeader(httpServletResponse);
         LOGGER.info("New expense created.");
@@ -28,7 +29,7 @@ public class ExpensesController {
         return instertState ? expensesVO : null;
     }
 
-    @RequestMapping(value = "/expensesByType/{type}", method = RequestMethod.GET)
+    @RequestMapping(value = "/byType/{type}", method = RequestMethod.GET)
     public List<ExpensesVO> getExpensesByType (HttpServletResponse httpServletResponse, @PathVariable("type") String type){ ///FIX
         addCorsHeader(httpServletResponse);
         LOGGER.info("Get expenses by Type.");
@@ -44,7 +45,7 @@ public class ExpensesController {
         return expensesVOList;
     }
 
-    @RequestMapping(value = "/expensesByDate/{date}", method = RequestMethod.GET)
+    @RequestMapping(value = "/byDate/{date}", method = RequestMethod.GET)
     public List<ExpensesVO> getExpensesByDate (HttpServletResponse httpServletResponse, @PathVariable("date") @DateTimeFormat(pattern="yyyyMMdd") LocalDate date){
         addCorsHeader(httpServletResponse);
         LOGGER.info("Get expenses by Date.");
@@ -52,7 +53,7 @@ public class ExpensesController {
         return expensesVOList;
     }
 
-    @RequestMapping(value = "/expense/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public @ResponseBody  ExpensesVO modifyExpense (HttpServletResponse httpServletResponse, @PathVariable("id") long id,
                                      @RequestBody ExpensesVO expensesVO){
         addCorsHeader(httpServletResponse);
@@ -61,7 +62,7 @@ public class ExpensesController {
         return modifyStatus ? expensesVO : null;
     }
 
-    @RequestMapping(value = "/expense/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public boolean deleteExpense(HttpServletResponse httpServletResponse, @PathVariable("id") long id){
         addCorsHeader(httpServletResponse);
         LOGGER.info("Expense with id: " + id + "has been deleted.");

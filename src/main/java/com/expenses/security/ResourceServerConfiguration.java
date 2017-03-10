@@ -1,6 +1,7 @@
 package com.expenses.security;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -9,22 +10,24 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
 
 @Configuration
 @EnableResourceServer
+@Order(1)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
 	private static final String RESOURCE_ID = "my_rest_api";
-	
+
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
-		resources.resourceId(RESOURCE_ID).stateless(false);
+		resources.resourceId(RESOURCE_ID);
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.
-		anonymous().disable()
-		.requestMatchers().antMatchers("/**")
+		http
+		.csrf().disable()
+		.anonymous().disable()
+		.requestMatchers().antMatchers("/expense/**")
 		.and().authorizeRequests()
-		.antMatchers("/**").access("hasRole('ADMIN')")
+		.antMatchers("/expense/**").access("hasRole('ADMIN')")
 		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 

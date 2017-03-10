@@ -3,6 +3,7 @@ package com.expenses.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,14 +16,16 @@ import org.springframework.security.oauth2.provider.approval.TokenStoreUserAppro
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
+@Order(2)
 public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private ClientDetailsService clientDetailsService;
-	
+
 	@Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -35,6 +38,11 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.anonymous().disable()
+//		.requestMatchers().antMatchers("/expense/**")
+//      .and()
+//      .authorizeRequests()
+//		.antMatchers("/expense/**").access("hasRole('ADMIN')")
+//		.and()
 	  	.authorizeRequests()
 	  	.antMatchers("/oauth/token").permitAll();
     }
@@ -60,7 +68,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		handler.setClientDetailsService(clientDetailsService);
 		return handler;
 	}
-	
+
 	@Bean
 	@Autowired
 	public ApprovalStore approvalStore(TokenStore tokenStore) throws Exception {
@@ -68,5 +76,5 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		store.setTokenStore(tokenStore);
 		return store;
 	}
-	
+
 }
